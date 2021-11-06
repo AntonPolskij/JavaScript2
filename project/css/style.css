@@ -1,0 +1,34 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+header {
+    display: flex;
+    justify-content: right;
+    border-bottom: 5px solid black
+}
+.btn-cart {
+    padding: 10px 15px;
+    margin: 10px;
+    background: none;
+    border-radius: 20px;
+}
+.products {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.product-item {
+    border: 1px solid gray;
+}
+.product-item>h3,p {
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+.buy-btn {
+    border-radius: 20px;
+    padding: 5px 10px;
+    margin: 5px;
+}
