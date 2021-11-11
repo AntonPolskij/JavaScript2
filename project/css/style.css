@@ -5,7 +5,7 @@
 }
 header {
     display: flex;
-    justify-content: right;
+    justify-content: flex-end;
     border-bottom: 5px solid black
 }
 .btn-cart {
@@ -31,4 +31,28 @@ header {
     border-radius: 20px;
     padding: 5px 10px;
     margin: 5px;
+}
+.cart_none {
+    display: none;
+}
+
+.cart{
+    position: absolute;
+    top: 37px;
+    right: 95px;
+    background-color: whitesmoke;
+    width: 320px;
+    padding: 10px;
+}
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.cart_item__info {
+    display: flex;
+    flex-direction: column;
+}
+.delete {
+    padding-right: 10px;
 }

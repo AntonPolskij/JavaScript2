@@ -1,6 +1,7 @@
+const API = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses/';
 class GoodsItem {
     constructor(product) {
-        this.title = product.title;
+        this.title = product.product_name;
         this.price = product.price;
     }
     render() {
@@ -17,14 +18,17 @@ class GoodsList {
     constructor(container = '.products') {
         this.container = container;
         this.goods = [];
+        this.fetchGoods()
+            .then(data => {
+                this.goods = data;
+                this.render();
+                this.goodsSum();
+            });
     }
     fetchGoods() {
-        this.goods = [
-            { id: 1, title: 'Notebook', price: 2000 },
-            { id: 2, title: 'Mouse', price: 20 },
-            { id: 3, title: 'Keyboard', price: 200 },
-            { id: 4, title: 'Gamepad', price: 50 },
-        ];
+        return fetch(`${API}catalogData.json`)
+            .then(result => result.json())
+            .catch(error => console.log(error));
     }
     render() {
         const block = document.querySelector(this.container);
@@ -43,26 +47,51 @@ class GoodsList {
 }
 
 class Cart {
-    constructor(count) {
-        this.countGoods = count;
+    constructor(container = '.cart') {
+        this.container = container;
         this.goods = [];
+        this.clickCart();
+        this.fetchItems().then(data => {
+            this.goods = data.contents;
+            this.render();
+        });
     }
-    addGoods() { };
-    render() { };
-    changeCountGoods() { };
-    removeGoods() { };
-    clearCart() { };
+    // addGoods() { };
+    fetchItems() {
+        return fetch(`${API}getBasket.json`).then(result => result.json()).catch(error => console.log(error));
+    }
+    clickCart() {
+        document.querySelector('.btn-cart').addEventListener('click', () => document.querySelector('.cart').classList.toggle('cart_none'));
+    }
+    render() {
+        let cart = document.querySelector('.cart');
+        this.goods.forEach(good => {
+            const cartItem = new CartItem(good);
+            cart.insertAdjacentHTML('beforeend', cartItem.render());
+        });
+    };
+    // changeCountGoods() { };
+    // removeGoods() { };
+    // clearCart() { };
 }
 class CartItem {
-    constructor(title, price, count) {
-        this.title = title;
-        this.price = price;
-        this.count = count;
+    constructor(product) {
+        this.title = product.product_name;
+        this.price = product.price;
+        this.count = product.quantity;
     }
-    render() { };
+    render() {
+        return `<div class="cart-item">
+                <div class="cart-item__info">
+                <img width=50px height=50px>
+                <h3>${this.title}</h3>
+                <p>Price:${this.price}&#8381;</p>
+                <p>Quantity:${this.count}<p>
+                </div>
+                <div class="delete">&#10006;</div>
+            </div>`
+    };
 }
 
 const goodsList = new GoodsList();
-goodsList.fetchGoods();
-goodsList.render();
-goodsList.goodsSum();
+const cartList = new Cart();
