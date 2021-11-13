@@ -1,18 +1,24 @@
 const API = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses/';
-class GoodsItem {
+class Item {
     constructor(product) {
         this.title = product.product_name;
-        this.price = product.price;
+        this.price = product.price
+        this.id_product = product.id_product;
     }
     render() {
-        return `<div class="product-item">
+        return `<div class="product-item" data-id=${this.id_product}>
                 <img width=200px height=150px>
                 <h3>${this.title}</h3>
                 <p>${this.price}</p>
-                <button class="buy-btn">Купить</button>
+                <button class="buy-btn"
+                    data-id="${this.id_product}"
+                    data-name="${this.product_name}"
+                    data-price="${this.price}">Купить</button>
             </div>`
     }
 }
+
+class GoodsItem extends Item { }
 
 class GoodsList {
     constructor(container = '.products') {
@@ -74,10 +80,9 @@ class Cart {
     // removeGoods() { };
     // clearCart() { };
 }
-class CartItem {
+class CartItem extends Item {
     constructor(product) {
-        this.title = product.product_name;
-        this.price = product.price;
+        super(product);
         this.count = product.quantity;
     }
     render() {
@@ -88,7 +93,7 @@ class CartItem {
                 <p>Price:${this.price}&#8381;</p>
                 <p>Quantity:${this.count}<p>
                 </div>
-                <div class="delete">&#10006;</div>
+                <div><p>${this.price * this.count}&#8381;</p><button class="del-btn" data-id="${this.id_product}">&times;</button></div>
             </div>`
     };
 }
