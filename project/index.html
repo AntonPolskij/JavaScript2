@@ -8,17 +8,29 @@
 </head>
 
 <body>
-    <header>
-        <form action="#" class="search-form">
-            <input type="text" class="search" name="search" id="search">
-            <button type="submit">search</button>
-        </form>
-        <div class="cart cart_none"></div>
-        <button class="btn-cart" type="button">Корзина</button>
-    </header>
-    <main>
-        <div class="products"></div>
-    </main>
+    <div id="app">
+        <header>
+            <form action="#" class="search-form" @submit.prevent="filter(userSearch)">
+                <input type="text" class="search" name="search" id="search" v-model="userSearch">
+                <button type="submit">search</button>
+            </form>
+            <div class="cart cart_none"></div>
+            <button class="btn-cart" type="button">Корзина</button>
+        </header>
+        <main>
+            <div class="products">
+                <div class="products-item" v-for="product of products" :key="product.id_product">
+                    <img :src=imgCatalog alt="Someimg">
+                    <div class="desc">
+                        <h3>{{ product.product_name }}</h3>
+                        <p>{{ product.price }} $</p>
+                        <button class="buy-btn" @click="addProduct(product)">Купить</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="js/main.js"></script>
 </body>
 
