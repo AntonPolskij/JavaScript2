@@ -24,13 +24,21 @@ class List {
         this.container = container;
         this.goods = [];
         this.allProducts = [];
+        this.filtered = [];
+    }
+    filter(value) {
+        const regexp = new RegExp(value, 'i');
+        this.filtered = this.allProducts.filter(product => regexp.test(product.title));
+        this.allProducts.forEach(el => {
+            const block = document.querySelector(`.product-item[data-id="${el.id_product}"]`);
+            if (!this.filtered.includes(el)) {
+                block.classList.add('cart_none');
+            } else
+                block.classList.remove('cart_none');
+        })
     }
     fetchGoods(url) {
         return fetch(url ? url : `${API + this.url}`).then(result => result.json()).catch(error => console.log(error));
-    }
-    handleData(data) {
-        this.goods = data;
-        this.render;
     }
     render() {
         const block = document.querySelector(this.container);
@@ -63,6 +71,10 @@ class GoodsList extends List {
         this.click();
     }
     click() {
+        document.querySelector('.search-form').addEventListener('submit', e => {
+            e.preventDefault();
+            this.filter(document.querySelector('.search').value)
+        });
         document.querySelector(this.container).addEventListener('click', e => {
             if (e.target.classList.contains('buy-btn')) {
                 this.cart.addProduct(e.target);
