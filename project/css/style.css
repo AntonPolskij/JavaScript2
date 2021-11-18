@@ -18,9 +18,10 @@ header {
     margin-top: 10px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
 }
-.product-item {
+.products-item {
+    margin-right: 5%;
     border: 1px solid gray;
 }
 .product-item>h3,p {

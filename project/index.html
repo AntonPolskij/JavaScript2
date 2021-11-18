@@ -14,12 +14,25 @@
                 <input type="text" class="search" name="search" id="search" v-model="userSearch">
                 <button type="submit">search</button>
             </form>
-            <div class="cart cart_none"></div>
-            <button class="btn-cart" type="button">Корзина</button>
+            <div class="cart" v-show="show">
+                <div v-for="item of cartItems" class="cart-item">
+                    <div class="cart-item__info">
+                        <img :src="imgCatalog" alt="Someimg" width="50px">
+                        <h3>{{ item.product_name }}</h3>
+                        <p class="price-for-one">Price: {{ item.price }} $</p>
+                        <p class="quantity">Quantity: {{ item.quantity }}</p>
+                    </div>
+                    <div>
+                        <p class="price">{{ item.price * item.quantity }} $</p><button class="del-btn"
+                            @click="removeProduct(item)">&times;</button>
+                    </div>
+                </div>
+            </div>
+            <button class="btn-cart" type="button" @click="show=!show">Корзина</button>
         </header>
         <main>
             <div class="products">
-                <div class="products-item" v-for="product of products" :key="product.id_product">
+                <div class="products-item" v-for="product of filtered" :key="product.id_product">
                     <img :src=imgCatalog alt="Someimg">
                     <div class="desc">
                         <h3>{{ product.product_name }}</h3>
