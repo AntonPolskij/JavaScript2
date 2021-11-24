@@ -1,3 +1,8 @@
-Vue.component('error',{
-    template:`<h2 class="error" v-show="$parent.error">Ошибка загрузки данных</h2>`,
-});
+Vue.component ('error', {
+    data() {
+        return {
+            isError: false,
+        }
+    },
+    template: `<div class="error" v-show="isError"><h1>Ошибка загрузки данных</h1></div>`
+})

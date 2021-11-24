@@ -1,0 +1,100 @@
+.subscribe {
+    background-image: url(../img/subscribe-bg.png);
+    background-size: cover;
+    &__opacity {
+        background-color: rgba(244, 244, 244, 0.7);
+    }
+    &__wrap {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    &__one {
+        @include column-center;
+        max-width: 359.24px;
+        padding-top: 97px;
+        padding-bottom: 126px;
+    }
+    &__one p {
+        margin-top: 30px;
+        font-size: 20px;
+        line-height: 24px;
+        text-align: center;
+        color: #222224;
+    }
+    &__two {
+        max-width: 360px;
+        @include column-center;
+        span {
+            font-weight: 700;
+            font-size: 24px;
+            line-height: 40px;
+            text-align: center;
+            color:rgba(34, 34, 36, 1); 
+        }
+        p {
+            font-size: 18px;
+            line-height: 30px;
+            text-align: center;
+            color:#222224;
+        }
+    }
+}
+.subscribe-form {
+    margin-top: 32px;
+    display: flex;
+    justify-content: center;
+    &__email {
+        max-width: 259px;
+        background-color: #E1E1E1;
+        padding: 14px 22px;
+        border-radius: 30px 0 0 30px;
+        border: none;
+        ::placeholder {
+            font-size: 14px;
+            line-height: 17px;
+            color: #222224;
+            opacity: 0.67;
+        }
+    }
+    &__email:focus {
+        outline: none;
+    }
+    &__button {
+        padding: 14px 21px;
+        border-color: transparent;
+        border-radius: 0 30px 30px 0;
+        background-color: $main-color;
+        color: #FFFFFF;
+        font-size: 14px;
+        line-height: 17px;
+        transition: 0.7s;
+    }
+    &__button:hover {
+        color: $main-color;
+        background-color: #FFFFFF;
+        cursor: pointer;
+    }
+}
+@media (max-width: 1024px) {
+    .subscribe {
+        &__wrap {
+            flex-direction: column;
+        }
+        &__one {
+            padding-top: 64px;
+            padding-bottom: 48px;
+        }
+    }
+    .subscribe-form {
+        padding-bottom: 140px;
+    }
+}
+@media (max-width: 767px) {
+    .subscribe {
+        &__two p {
+            font-size: 14px;
+            line-height: 21px;
+        }
+    }
+}

@@ -1,6 +1,10 @@
-Vue.component ('filtercomp', {
-    template: `<form action="#" class="search-form" @submit.prevent="$parent.filter($parent.userSearch)">
-                <input type="text" class="search" name="search" id="search" v-model="$parent.userSearch">
-                <button type="submit">search</button>
-            </form>`
+Vue.component('filter-comp', {
+    data() {
+        return {
+            userSearch: ''
+        }
+    },
+    template: `<form action="#" class="search" @submit.prevent="$root.$refs.products.filter(userSearch)">
+    <img src="img/search.svg" alt="search"><input type="text" name="search" id="search" v-model="userSearch">
+    </form>`
 });

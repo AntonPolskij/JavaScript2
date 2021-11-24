@@ -1,22 +1,60 @@
-Vue.component ('cart',{
-    props: ['visibility','img','cartItems'],
-    template: `<div class="cart" v-show="visibility">
-                    <cart-item v-for="item of cartItems" :key="item.id_product" :product="item" :img="img"></cart-item>
-                </div>`
+Vue.component('cart', {
+    data() {
+        return {
+            showCart: false,
+            cartItems: [],
+            cartUrl: 'cartItems.json',
+        }
+    },
+    methods: {
+        addProduct(product) {
+            let find = this.cartItems.find(el => el.id_product === product.id_product);
+            if (find) {
+                find.quantity++;
+                this.$root.cartCounter++;
+            } else {
+                this.$root.cartCounter++;
+                const prod = Object.assign({ quantity: 1 }, product);
+                this.cartItems.push(prod);
+            }
+        },
+        deleteProduct(product) {
+            if (product.quantity > 1) {
+                this.$root.cartCounter--;
+                product.quantity--;
+            } else {
+                this.$root.cartCounter--;
+                this.cartItems.splice(this.cartItems.indexOf(product), 1);
+            }
+        },
+    },
+    mounted() {
+        this.$parent.getJson(`${this.cartUrl}`).then(data => {
+            for (let el of data) {
+                this.cartItems.push(el);
+            };
+            for (item of this.cartItems) {
+                this.$root.cartCounter += item.quantity;
+            };
+        })
+    },
+    template: `<div v-show="showCart" class="cart-hidden"> 
+                    <cart-item v-for="item of cartItems" :product="item" :key="item.id_product">
+                    </cart-item>
+               </div>`
 });
 
-Vue.component ('cart-item', {
-    props: ['product','img'],
-    template: `<div class="cart-item">
-                    <div class="cart-item__info">
-                        <img :src="img" alt="Someimg" width="50px">
-                        <h3>{{ product.product_name }}</h3>
-                        <p class="price-for-one">Price: {{ product.price }} $</p>
-                        <p class="quantity">Quantity: {{ product.quantity }}</p>
+Vue.component('cart-item', {
+    props: ['product'],
+    template: `<div class="cart-hidden__item hidden-item">
+                    <div class="hidden-item__wrap">
+                    <img :src="('img/' + product.id_product + '.png')" width="100px" height="100px">
+                    <div class=hidden-item__info>
+                    <p class="hidden-item__name">Title: {{ product.product_name }}</p>
+                    <p class="hidden-item__price">Price: {{ product.price * product.quantity }} $</p>
+                    <p class="hidden-item__quantity">Quantity: {{product.quantity}}</p>
                     </div>
-                    <div>
-                        <p class="price">{{ product.price * product.quantity }} $</p><button class="del-btn"
-                            @click="$root.removeProduct(product)">&times;</button>
                     </div>
+                    <button class="hidden-item__delete-btn" @click="$root.$refs.cart.deleteProduct(product)">&#215;</button>
                 </div>`
-});
+})

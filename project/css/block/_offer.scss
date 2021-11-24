@@ -1,0 +1,64 @@
+.offer {
+    margin-top: 65px;
+    &__wrap {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+    &__item {
+        padding: 9% 0;
+        width: 32%;
+        @include center();
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    &__item p {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 16px;
+        line-height: 19px;
+        color: #FFFFFF;
+    }
+    &__item  span {
+        font-size: 24px;
+        line-height: 29px;
+        font-weight: bold;
+        color: $main-color;
+    }
+    &__item:last-child {
+        width: 100%;
+        padding: 6% 0;
+        margin-top: 30px;
+    }
+    &__item.man {
+        background-image: url(../img/offer__man.jpg);
+    }
+    &__item.woman {
+        background-image: url(../img/offer__woman.jpg);
+    }
+    &__item.kids {
+        background-image: url(../img/offer__kids.jpg);
+    }
+    &__item.accesories {
+        background-image: url(../img/offer__accesories.jpg);
+    }
+}
+
+@media (max-width: 767px) {
+    .offer {
+        &__wrap {
+        flex-direction: column;
+        }
+        &__item {
+            width: 100%;
+            padding: 30% 0;
+        }
+        &__item:not(:first-child) {
+            margin-top: 30px;
+        }
+        &__item:last-child {
+            padding: 10% 0;
+        }
+    }
+}
