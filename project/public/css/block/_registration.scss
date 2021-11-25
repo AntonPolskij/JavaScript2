@@ -1,0 +1,142 @@
+.registration {
+    margin-top: 64px;
+    margin-bottom: 96px;
+    @include space-between;
+    .registration-form {
+        flex-grow: 1;
+        max-width: 360px;
+        fieldset {
+            border: none;
+        }
+        fieldset:first-child {
+            margin-bottom: 31px;
+        }
+        fieldset:nth-child(2) {
+            margin-bottom: 33px;
+        }
+        fieldset:nth-child(3) {
+            margin-bottom: 15px;
+        }
+        legend {
+            font-weight: 300;
+            font-size: 16px;
+            line-height: 19px;
+            margin-bottom: 20px;
+        }
+        &__text-input {
+            width: 100%;
+            padding: 13px 0 16px 17px;
+            transition: 0.7s;
+        }
+        &__text-input:focus {
+            transform: scale(1.15);
+        }
+        &__text-input:not(:last-child) {
+            margin-bottom: 20px;
+        }
+        &__radio-input:not(:first-child) {
+            margin-left: 20px;
+        }
+        &__radio-input:checked {
+            transition: 2s;
+            transform: rotateY(360deg);
+        }
+        label {
+            font-weight: 300;
+            font-size: 11px;
+            line-height: 13px;
+            margin-left: 10px;
+        }
+        p {
+            font-weight: 300;
+            font-size: 13px;
+            line-height: 16px;
+            color: #b1b1b1;
+            margin-bottom: 39px;
+        }
+        &__button {
+            padding: 17px 29px;
+            background-color: $main-color;
+            border: none;
+            fill: #FFFFFF;
+            color: #FFFFFF;
+            svg {
+                margin-left: 20px;
+            }
+        }
+        &__button:hover {
+            cursor: pointer;
+            animation: radius-button 3s ease 1 forwards;
+            @keyframes radius-button {
+            90% {
+                border-radius: 100px;
+            }
+            100% {
+                color: #000;
+                fill: #000;
+            }    
+            }
+        }
+    }
+    &__info {
+        flex-grow: 1;
+        max-width: 652px;
+        h3 {
+            font-weight: 300;
+            font-size: 24px;
+            line-height: 29px;
+            margin-bottom: 22px;
+        }
+        p {
+            font-weight: 300;
+            font-size: 24px;
+            line-height: 29px;
+            margin-bottom: 21px;
+        }
+        ul {
+            list-style: none;
+            li {
+                font-weight: 300;
+                font-size: 24px;
+                line-height: 29px;
+            }
+            li:not(:last-child){
+                margin-bottom: 16px;
+            }
+            li::before {
+                content:url(../../img/check.svg);
+                margin-right: 22px;
+            }
+        }
+    }
+}
+@media (max-width:1024px) {
+    .registration__info {
+        max-width: 354px;
+        h3 {
+            font-weight: 300;
+            font-size: 16px;
+            line-height: 19px;
+        }
+        p {
+            font-weight: 300;
+            font-size: 16px;
+            line-height: 19px;
+        }
+        ul li {
+            font-size: 16px;
+            line-height: 19px;
+        }
+    }
+}
+@media (max-width:767px) {
+    .registration {
+        flex-direction: column;
+        &__info {
+            margin-top: 40px;
+        }
+        &__info ul>li {
+            display: flex;
+        }
+    }
+}
