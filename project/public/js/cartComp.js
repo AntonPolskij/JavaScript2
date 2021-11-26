@@ -13,6 +13,7 @@ Vue.component('cart', {
                 this.$parent.putJson(`/api/cart/${find.id_product}`, { quantity: 1 })
                     .then(data => {
                         if (data.result === 1) {
+                            this.$root.cartCounter++;
                             find.quantity++
                         }
                     })
@@ -21,7 +22,29 @@ Vue.component('cart', {
                 this.$parent.postJson(`/api/cart`, prod)
                     .then(data => {
                         if (data.result === 1) {
+                            this.$root.cartCounter++;
                             this.cartItems.push(prod)
+                        }
+                    })
+            }
+        },
+        remove(product) {
+            if (product.quantity > 1) {
+                this.$parent.putJson(`/api/cart/${product.id_product}`, { quantity: -1 })
+                    .then(data => {
+                        if (data.result) {
+                            this.$root.cartCounter--;
+                            product.quantity--;
+                        }
+                    })
+            } else {
+                this.$parent.delJson(`/api/cart/${product.id_product}`, product)
+                    .then(data => {
+                        if (data.result) {
+                            this.$root.cartCounter--;
+                            this.cartItems.splice(this.cartItems.indexOf(product), 1);
+                        } else {
+                            console.log('error');
                         }
                     })
             }
@@ -55,6 +78,6 @@ Vue.component('cart-item', {
                     <p class="hidden-item__quantity">Quantity: {{product.quantity}}</p>
                     </div>
                     </div>
-                    <button class="hidden-item__delete-btn" @click="$root.$refs.cart.deleteProduct(product)">&#215;</button>
+                    <button class="hidden-item__delete-btn" @click="$root.$refs.cart.remove(product)">&#215;</button>
                 </div>`
 })
