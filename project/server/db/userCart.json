@@ -1,20 +1,5 @@
 {
     "amount": 46600,
     "countGoods": 2,
-    "contents": [
-        {
-            "quantity": 3,
-            "id_product": "product3",
-            "product_name": "MASQW X M'O CAPSULE",
-            "price": 52,
-            "info": "Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi."
-        },
-        {
-            "quantity": 1,
-            "id_product": "product2",
-            "product_name": "BORRS X M'O CAPSULE",
-            "price": 26,
-            "info": "Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi."
-        }
-    ]
+    "contents": []
 }
