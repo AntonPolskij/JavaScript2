@@ -1,0 +1,15 @@
+@mixin center() {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+@mixin space-between () {
+    display: flex;
+    justify-content: space-between;
+}
+@mixin column-center() {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+$main-color: #F16D7F;

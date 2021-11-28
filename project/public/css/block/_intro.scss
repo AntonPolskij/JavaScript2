@@ -1,0 +1,50 @@
+.intro {
+    background-color: #F1E4E6;
+    height: 768px;
+    &__wrap {
+        background-image: url(../img/man.png);
+        background-repeat: no-repeat;
+        background-position: -228px bottom;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+    &__heading {
+        max-width: 421px;
+        padding-left: 16px;
+        border-left:12px solid $main-color;
+    &__heading h1 {
+        font-size: 32px;
+        font-weight: bold;
+        line-height: 38px;
+        color: #222222;
+    }
+    }
+    &__heading strong {
+        display: block;
+        font-size: 48px;
+        font-weight: 900;
+        line-height: 58px;
+    }
+    &__heading span {
+        color: $main-color;
+    }
+}
+@media (max-width: 767px) {
+    .intro {
+        height: 363px;
+        &__wrap {
+            background-image: none;
+            justify-content: center;
+        }
+        &__heading h1 {
+            font-size: 20px;
+            line-height: 24px;
+        }
+        &__heading strong {
+            font-size: 38px;
+            line-height: 46px;
+        }
+    }
+}

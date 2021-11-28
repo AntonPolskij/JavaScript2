@@ -1,0 +1,122 @@
+.header {
+    background-color: #222222;
+    padding: 19px 0;
+    position: relative;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 90;
+    left: 0;
+    display: flex;
+    justify-content: flex-end;
+    &__flex {
+        display: flex;
+        justify-content: space-between;
+    }
+    &__one {
+        display: flex;
+    }
+    &__one a:not(:last-child) {
+        margin-right: 41px;
+        text-decoration: none;
+    }
+    &__one a:hover {
+        opacity: 0.6;
+    }
+    &__two {
+        display: flex;
+        align-items: center;
+    }
+    &__two a {
+        fill: #FFFFFF;
+    }
+    &__two a:hover {
+        opacity: 0.6;
+    }
+    &__two a:not(:last-child) {
+        margin-right: 33px;
+    }
+    .cart-hidden {
+        position: absolute;
+        z-index: 100;
+        top:60px;
+        right: 135px;
+        width: 400px;
+        min-height: 50px;
+        background-color: #FFFF;
+    }
+    .hidden-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        &__wrap{
+            display: flex;
+            gap: 15px;
+        }
+        &__name,&__price {
+            margin-bottom: 10px;
+        }
+        &__delete-btn {
+            margin-right: 5px;
+            border: none;
+            border: 1px solid $main-color;
+            border-radius: 100%;
+            padding: 5px 10px;
+            font-size: 20px;
+            background-color: #FFFF;
+            color: $main-color;
+            transition: 0.3s;
+        }
+        &__delete-btn:hover {
+            background-color: $main-color;
+            border-color: #FFFF;
+            color: #FFFF;
+        }
+    }
+    .hidden-item:not(:last-child){
+        margin-bottom: 10px;
+    }
+    .cart-icon:hover {
+        cursor: pointer;
+        opacity: 0.6;
+    }
+    .cart-icon {
+        fill: #FFFFFF;
+    }
+    .cart-icon-decor:hover {
+        opacity: 0.6;
+    }
+    .cart-icon-decor {
+        position: relative;
+             &__circle {
+            position: absolute;
+            width: 19px;
+            height: 19px;
+            border-radius: 100%;
+            background-color: $main-color;
+            top: -8px;
+            right: -8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #FFFFFF;
+            font-size: 12px;
+            line-height: 14px;
+            font-weight: 400;
+            }
+        }
+        .burger-menu:hover {
+            opacity: 0.6;
+        }
+        .search {
+            display: flex;
+            align-items: center;
+            img {
+                margin-right: 10px;
+            }
+            img:hover {
+                    cursor: pointer;
+                    opacity: 0.6;
+                }
+        }
+}
