@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Интернет-магазин</title>
+</head>
+
+<body>
+    <div id="app">
+        <header>
+            <filtercomp></filtercomp>
+            <!-- <form action="#" class="search-form" @submit.prevent="filter(userSearch)">
+                <input type="text" class="search" name="search" id="search" v-model="userSearch">
+                <button type="submit">search</button>
+            </form> -->
+            <!-- <div class="cart" v-show="show">
+                <div v-for="item of cartItems" class="cart-item">
+                    <div class="cart-item__info">
+                        <img :src="imgCatalog" alt="Someimg" width="50px">
+                        <h3>{{ item.product_name }}</h3>
+                        <p class="price-for-one">Price: {{ item.price }} $</p>
+                        <p class="quantity">Quantity: {{ item.quantity }}</p>
+                    </div>
+                    <div>
+                        <p class="price">{{ item.price * item.quantity }} $</p><button class="del-btn"
+                            @click="removeProduct(item)">&times;</button>
+                    </div>
+                </div>
+            </div> -->
+            <error></error>
+            <cart :visibility="show" :cart-items="cartItems" :img="imgCatalog"></cart>
+            <button class="btn-cart" type="button" @click="show=!show">Корзина</button>
+        </header>
+        <main>
+            <products :products="filtered" :img="imgCatalog" @product-add="addProduct"></products>
+            <!-- <div class="products">
+                <div class="products-item" v-for="product of filtered" :key="product.id_product">
+                    <img :src=imgCatalog alt="Someimg">
+                    <div class="desc">
+                        <h3>{{ product.product_name }}</h3>
+                        <p>{{ product.price }} $</p>
+                        <button class="buy-btn" @click="addProduct(product)">Купить</button>
+                    </div>
+                </div>
+            </div> -->
+        </main>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="js/errorComp.js"></script>
+    <script src="js/cartComp.js"></script>
+    <script src="js/productComp.js"></script>
+    <script src="js/filterComp.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
